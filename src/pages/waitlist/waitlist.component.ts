@@ -4,6 +4,7 @@ import { WaitlistFormComponent } from '../../components/waitlist-form/waitlist-f
 import { NzContentComponent, NzFooterComponent, NzHeaderComponent, NzLayoutComponent, NzSiderComponent } from 'ng-zorro-antd/layout';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzSpaceComponent, NzSpaceItemDirective } from 'ng-zorro-antd/space';
 
 @Component({
   selector: 'app-waitlist',
@@ -14,7 +15,9 @@ import { NzButtonComponent } from 'ng-zorro-antd/button';
         NzLayoutComponent,
         NzContentComponent,
         NzFooterComponent,
-        FooterComponent
+        FooterComponent,
+        NzSpaceComponent,
+        NzSpaceItemDirective
     ],
   templateUrl: './waitlist.component.html',
   styleUrl: './waitlist.component.scss'
