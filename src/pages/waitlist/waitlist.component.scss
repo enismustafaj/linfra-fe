@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.waitlist {
+  &__intro {
+    padding-top: 50px;
+  }
+}
