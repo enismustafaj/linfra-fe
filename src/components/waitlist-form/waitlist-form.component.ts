@@ -1,10 +1,11 @@
-import { Component, OnInit, output, Output } from '@angular/core';
+import { Component, input, OnInit, output, Output } from '@angular/core';
 import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent } from 'ng-zorro-antd/form';
 import { NzColDirective } from 'ng-zorro-antd/grid';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzSpaceComponent, NzSpaceItemDirective } from 'ng-zorro-antd/space';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { WaitlistResponse } from '../../data/waitlist.interface';
 
 @Component({
     selector: 'app-waitlist-form',
@@ -17,13 +18,14 @@ import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } fr
         NzInputDirective,
         NzButtonComponent,
         NzFormDirective,
-        ReactiveFormsModule,
-        NzSpaceComponent
+        ReactiveFormsModule
     ],
     templateUrl: './waitlist-form.component.html',
     styleUrl: './waitlist-form.component.scss'
 })
 export class WaitlistFormComponent implements OnInit {
+    submission = input<WaitlistResponse>();
+
     submit = output<{
         name: string, email: string
     }>();

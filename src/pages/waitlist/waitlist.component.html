@@ -6,8 +6,8 @@
                 <app-waitlist-intro *nzSpaceItem>
                 </app-waitlist-intro>
 
-
-                <app-waitlist-form *nzSpaceItem>
+<!--                todo: un-fuck this-->
+                <app-waitlist-form *nzSpaceItem [submission]="(submission$ | async)!" (submit)="onSubmit($event)">
                 </app-waitlist-form>
             </nz-space>
 
