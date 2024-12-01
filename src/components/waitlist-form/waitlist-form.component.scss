@@ -1,10 +1,8 @@
 .waitlist-form {
 
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-
-  gap: 20px
-
+  &__button {
+    width: 100%;
+    margin-top: 24px;
+  }
 }
 

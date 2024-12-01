@@ -1,21 +1,24 @@
 <div class="waitlist-form">
-    <form nz-form>
+    <form nz-form [formGroup]="form" (ngSubmit)="onSubmit()">
         <nz-form-item>
-            <nz-form-label [nzSpan]="26" nzFor="email">name</nz-form-label>
-            <nz-form-control [nzSpan]="26">
-                <input nz-input placeholder="Enter your fullname..." name="email" type="email"
+            <nz-form-label nzFor="name" nzRequired>name</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="name" placeholder="Enter your fullname..."
+                       name="name" type="text"
                        id="name"/>
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-            <nz-form-label [nzSpan]="26" nzFor="email">e-mail</nz-form-label>
-            <nz-form-control [nzSpan]="26">
-                <input nz-input placeholder="Enter your email..." name="email" type="email"
+            <nz-form-label nzFor="email" nzRequired>email</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="email" placeholder="Enter your email..."
+                       name="email" type="email"
                        id="email"/>
             </nz-form-control>
         </nz-form-item>
+
+        <button nz-button class="waitlist-form__button" nzType="primary" type="submit">Join the waitlist</button>
     </form>
 
-    <button nz-button nzType="primary">Join the waitlist</button>
 </div>
