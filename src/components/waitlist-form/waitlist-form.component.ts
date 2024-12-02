@@ -8,7 +8,7 @@ import { WaitlistResponse } from '../../data/waitlist.interface';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzCardComponent } from 'ng-zorro-antd/card';
-import { first, map, Observable, take } from 'rxjs';
+import { first, map, Observable, take, tap } from 'rxjs';
 import { WaitlistService } from '../../services/waitlist.service';
 
 @Component({
@@ -42,7 +42,7 @@ export class WaitlistFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.submission$ = this.waitlistService.get();
+        this.submission$ = this.waitlistService.get().pipe(take(1));
         this.firstName$ = this.submission$.pipe(map(submission => submission?.name.split(' ')[0]));
 
         this.form = this.fb.group({
@@ -79,6 +79,6 @@ export class WaitlistFormComponent implements OnInit {
             return;
         }
 
-        this.waitlistService.create(this.form.value).pipe(take(1)).subscribe();
+        this.submission$ = this.waitlistService.create(this.form.value).pipe(take(1));
     }
 }
