@@ -11,10 +11,10 @@ export class WaitlistService {
     }
 
     get(): Observable<WaitlistResponse> {
-        return this.restService.getRequest('/waitlist');
+        return this.restService.getRequest('/v1/user/waitlist');
     }
 
     create(data: WaitlistRequest): Observable<WaitlistResponse> {
-        return this.restService.postRequest('/waitlist', data);
+        return this.restService.postRequest('/v1/user/waitlist', data);
     }
 }

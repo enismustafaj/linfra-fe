@@ -26,7 +26,7 @@ import { WaitlistResponse } from '../../data/waitlist.interface';
 export class WaitlistFormComponent implements OnInit {
     submission = input<WaitlistResponse>();
 
-    submit = output<{
+    create = output<{
         name: string, email: string
     }>();
 
@@ -38,8 +38,11 @@ export class WaitlistFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            name: this.fb.control('', [Validators.required]),
-            email: this.fb.control('', [Validators.required, Validators.email]),
+            name: this.fb.control({value: this.submission()?.name ?? '', disabled: !!this.submission()?.name}, [Validators.required]),
+            email: this.fb.control({
+                value: this.submission()?.email ?? '',
+                disabled: !!this.submission()?.email
+            }, [Validators.required, Validators.email]),
         });
     }
 
@@ -49,15 +52,13 @@ export class WaitlistFormComponent implements OnInit {
             Object.values(this.form.controls).forEach(control => {
                 if (control.invalid) {
                     control.markAsDirty();
-                    control.updateValueAndValidity({ onlySelf: true });
+                    control.updateValueAndValidity({onlySelf: true});
                 }
             });
-            console.log('form invalid', this.form.value!)
             return;
         }
 
-        console.log('form valid', this.form.value!);
-        this.submit.emit(this.form.value);
+        this.create.emit(this.form.value);
     }
 
 }

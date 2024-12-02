@@ -13,7 +13,7 @@ export const environment = {
         messagingSenderId: "811310475795",
         measurementId: "G-3Z7RR1EW3N"
     },
-    apiHost: 'https://linfra-f48376244a1d.herokuapp.com/api',
+    apiHost: 'http://localhost:8080/api',
 };
 
 /*

@@ -7,13 +7,13 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { API } from '../util/env.utils';
 import { environment } from '../environments/environment';
-import { AuthInterceptor } from '../interceptor/auth-interceptor';
+import { authenticationInterceptor } from '../interceptor/auth-interceptor';
 
 registerLocaleData(en);
 
@@ -24,15 +24,10 @@ export const appConfig: ApplicationConfig = {
         provideNzI18n(en_US),
         importProvidersFrom(FormsModule),
         provideAnimationsAsync(),
-        provideHttpClient(),
+        provideHttpClient(withInterceptors([authenticationInterceptor])),
         {
             provide: API,
             useValue: environment.apiHost,
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
         },
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()),
