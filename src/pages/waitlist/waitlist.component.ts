@@ -20,25 +20,11 @@ import { AsyncPipe } from '@angular/common';
         NzFooterComponent,
         FooterComponent,
         NzSpaceComponent,
-        AsyncPipe,
         NzSpaceItemDirective
     ],
     templateUrl: './waitlist.component.html',
     styleUrl: './waitlist.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WaitlistComponent implements OnInit {
-
-    submission$?: Observable<WaitlistResponse | undefined>;
-
-    constructor(private readonly waitlistService: WaitlistService) {
-    }
-
-    ngOnInit(): void {
-        this.submission$ = this.waitlistService.get();
-    }
-
-    onSubmit(data: { name: string, email: string }): void {
-        this.waitlistService.create(data).pipe(take(1)).subscribe();
-    }
+export class WaitlistComponent {
 }
