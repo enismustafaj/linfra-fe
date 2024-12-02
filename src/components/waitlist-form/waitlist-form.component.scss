@@ -7,6 +7,17 @@
 
   &__success {
     margin-top: 24px;
+
+    &__card__content {
+      display: flex;
+      flex-direction: row;
+
+      gap: 24px;
+
+      &__icon {
+        font-size: 24px;
+      }
+    }
   }
 }
 
