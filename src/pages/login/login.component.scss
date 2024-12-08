@@ -1,0 +1,24 @@
+.login-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.login-form {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+
+  &__button {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+.register-prompt {
+  margin-top: 10px;
+}
