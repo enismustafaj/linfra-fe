@@ -1,0 +1,40 @@
+<div class="login-intro">
+  <div>
+    <h5>
+        linfra | infrastructure for the lazy
+    </h5>
+    <h1>
+        Login
+    </h1>
+  </div>
+</div>
+
+
+<div class="login-form">
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <nz-form-item>
+      <nz-form-label nzFor="name" nzRequired>email</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="email" placeholder="Enter your email"
+                name="email" type="text"
+                id="email"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="password" nzRequired>password</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="password" placeholder="Enter your password"
+                name="password" type="password"
+                id="password"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <button nz-button class="login-form__button" nzType="primary" type="submit">Login</button>
+  </form>
+  <div class="register-prompt">
+    Don't have an account? <a>Register now!</a>
+  </div>
+</div>
+
+
