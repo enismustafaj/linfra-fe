@@ -1,12 +1,20 @@
 import { Component, Input } from "@angular/core";
+import { ResourceProperty } from "../../model/resource_property.model";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-dashboard",
+  selector: "app-resource",
   templateUrl: "./resource.component.html",
-  styleUrl: "./resource.component.scss"
+  styleUrl: "./resource.component.scss",
+
+  standalone: true,
+  imports: [CommonModule]
 })
-export class ResourceComponent {
+export class ResourceComponent{
 
   @Input()
-  private resourceName: string;
+  resourceName: string = "";
+
+  @Input()
+  resourceProperties: ResourceProperty[] = [];
 }

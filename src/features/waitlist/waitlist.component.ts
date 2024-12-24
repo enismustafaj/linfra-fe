@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { WaitlistIntroComponent } from '../../components/waitlist-intro/waitlist-intro.component';
-import { WaitlistFormComponent } from '../../components/waitlist-form/waitlist-form.component';
-import { NzContentComponent, NzFooterComponent, NzLayoutComponent } from 'ng-zorro-antd/layout';
-import { FooterComponent } from '../../components/footer/footer.component';
+import { WaitlistIntroComponent } from './components/waitlist-intro/waitlist-intro.component';
 import { NzSpaceComponent, NzSpaceItemDirective } from 'ng-zorro-antd/space';
+import { WaitlistFormComponent } from './components/waitlist-form/waitlist-form.component';
 
 
 @Component({
@@ -12,10 +10,6 @@ import { NzSpaceComponent, NzSpaceItemDirective } from 'ng-zorro-antd/space';
   imports: [
     WaitlistIntroComponent,
     WaitlistFormComponent,
-    NzLayoutComponent,
-    NzContentComponent,
-    NzFooterComponent,
-    FooterComponent,
     NzSpaceComponent,
     NzSpaceItemDirective
   ],

@@ -1,3 +1,9 @@
 <div>
+    {{resourceName}}
+
+    <span *ngFor="let property of resourceProperties">
+        {{property.propertyName}}
+        {{property.propertyValue}}
+    </span>
 
 </div>

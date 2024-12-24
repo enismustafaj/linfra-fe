@@ -4,11 +4,11 @@ import { NzColDirective } from 'ng-zorro-antd/grid';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { WaitlistResponse } from '../../data/waitlist.interface';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzCardComponent } from 'ng-zorro-antd/card';
 import { map, Observable, shareReplay, Subject, take, takeUntil, tap } from 'rxjs';
+import { WaitlistResponse } from '../../models/waitlist.interface';
 import { WaitlistService } from '../../services/waitlist.service';
 
 @Component({

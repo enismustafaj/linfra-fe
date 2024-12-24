@@ -13,7 +13,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { API } from '../util/env.utils';
 import { environment } from '../environments/environment';
-import { authenticationInterceptor } from '../interceptor/auth-interceptor';
+import { authenticationInterceptor } from '../core/interceptor/auth-interceptor';
 
 registerLocaleData(en);
 

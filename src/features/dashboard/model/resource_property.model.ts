@@ -1,4 +1,4 @@
 export interface ResourceProperty {
-  propetyName: string,
+  propertyName: string,
   propertyValue: string
 }

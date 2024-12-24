@@ -1,15 +1,15 @@
-import { Inject } from "@angular/core";
-import { RestService } from "../../../services/rest.service";
+import { RestService } from "../../../core/services/rest.service";
 import { Observable } from "rxjs";
 import { Resource } from "../model/resource.model";
+import { Injectable } from "@angular/core";
 
-@Inject
+@Injectable()
 export class ResourceService {
 
   constructor(private restClient: RestService) { }
 
   getResources(): Observable<Resource[]> {
-    return this.restClient.getRequest("")
+    return this.restClient.getRequest("/api/v1/resources")
   }
 
 }
