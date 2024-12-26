@@ -23,7 +23,8 @@ import { userloggedInAction } from "../../../core/store/actions/user.actions";
     NzInputDirective,
     NzButtonComponent,
     NzFormDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule
   ],
   styleUrl: "./login.component.scss",
   templateUrl: "./login.component.html"

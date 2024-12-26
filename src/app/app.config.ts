@@ -14,11 +14,13 @@ import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingServ
 import { API } from '../util/env.utils';
 import { environment } from '../environments/environment';
 import { authenticationInterceptor } from '../core/interceptor/auth-interceptor';
+import { provideStore } from '@ngrx/store';
 
 registerLocaleData(en);
 
 export const appConfig: ApplicationConfig = {
     providers: [
+        provideStore(),
         provideZoneChangeDetection({eventCoalescing: true}),
         provideRouter(routes),
         provideNzI18n(en_US),
