@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { UserState } from "../store/user.store";
-import { filter, map, take } from "rxjs";
+import { map, take } from "rxjs";
 
 
 @Injectable({
