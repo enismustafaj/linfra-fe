@@ -4,7 +4,8 @@ import { ResourceService } from "../../services/resource.service";
 import { Observable, of } from "rxjs";
 import { Resource } from "../../model/resource.model";
 import { CommonModule } from "@angular/common";
-import { NzCollapseComponent } from "ng-zorro-antd/collapse";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzIconModule } from "ng-zorro-antd/icon";
 
 @Component({
     selector: "app-dashboard",
@@ -13,36 +14,12 @@ import { NzCollapseComponent } from "ng-zorro-antd/collapse";
     standalone: true,   
 
     providers: [ResourceService],
-    imports: [CommonModule, ResourceComponent]
+    imports: [CommonModule, ResourceComponent, NzButtonModule, NzIconModule]
     
 })
 export class DashboardComponent implements OnInit {
 
-    resources$: Observable<Resource[]> = of([{
-        resouceName: "resource",
-        resourceType: "database",
-        resourceProperties: [
-            {
-                propertyName: "prop1",
-                propertyValue: "val1"
-            }
-        ]
-    },
-    {
-        resouceName: "resource",
-        resourceType: "database",
-        resourceProperties: []
-    },
-    {
-        resouceName: "resource",
-        resourceType: "database",
-        resourceProperties: []
-    },
-    {
-        resouceName: "resource",
-        resourceType: "database",
-        resourceProperties: []
-    }]);
+    resources$: Observable<Resource[]> = of();
 
     constructor(private resourceService: ResourceService){}
 

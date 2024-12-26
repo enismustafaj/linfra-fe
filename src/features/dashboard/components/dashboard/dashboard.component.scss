@@ -2,13 +2,24 @@
     padding: 5px;
 }
 
+.resources-container {
+    padding: 10px;
+    width: 50%;
+}
+
+@media (max-width: 480px) {
+    .resources-container {
+        width: 100%;
+    }
+}
+
 .dashboard-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    align-items: center;
 }
 
-.dashboard {
-    height: 100%;
+.dashboard-title{
+    padding-left: 10px;
 }

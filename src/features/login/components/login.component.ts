@@ -7,7 +7,7 @@ import { NzInputDirective } from "ng-zorro-antd/input";
 import { NzLayoutModule } from "ng-zorro-antd/layout";
 import { AuthService } from "../../../core/services/auth-service";
 import { UserState } from "../../../core/store/user.store";
-import { Store } from "@ngrx/store";
+import { Store, StoreModule } from "@ngrx/store";
 import { userloggedInAction } from "../../../core/store/actions/user.actions";
 
 @Component({
@@ -23,7 +23,7 @@ import { userloggedInAction } from "../../../core/store/actions/user.actions";
     NzInputDirective,
     NzButtonComponent,
     NzFormDirective,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   styleUrl: "./login.component.scss",
   templateUrl: "./login.component.html"
