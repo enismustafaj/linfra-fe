@@ -1,5 +1,15 @@
-<div>
-    <div class="resource" *ngFor="let resource of resources$ | async">
-        <app-resource [resourceName]="resource.resouceName" [resourceProperties]="resource.resourceProperties"></app-resource>
-    </div>
+
+<div class="dashboard">
+    <h2 class="dashboard-title">My Resources</h2>
+
+    <div class="dashboard-content">
+    
+        <div class="resources-container">
+            @for (resource of resources$ | async; track resource) {
+                <div class="resource-container">
+                    <app-resource [resourceName]="resource.resouceName" [resourceProperties]="resource.resourceProperties"></app-resource>
+                </div>
+            }
+        </div>
+    </div> 
 </div>
