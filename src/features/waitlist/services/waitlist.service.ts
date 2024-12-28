@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WaitlistRequest, WaitlistResponse } from '../data/waitlist.interface';
-import { RestService } from './rest.service';
+import { WaitlistRequest, WaitlistResponse } from '../models/waitlist.interface';
+import { RestService } from '../../../core/services/rest.service';
 
 @Injectable({
     providedIn: 'root',

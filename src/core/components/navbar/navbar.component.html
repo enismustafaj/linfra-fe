@@ -1,0 +1,23 @@
+<nz-header>
+
+    <div class="navbar">
+        <div class="logo">
+            linfra | infrastructure for the lazy
+        </div>
+        <ul class="main-menu" nz-menu nzTheme="dark" nzMode="horizontal">
+            <li class="menu-item" nz-menu-item><a routerLink="/login">Login</a></li>
+        </ul>
+
+        <button class="submenu-button" nz-button nz-dropdown [nzDropdownMenu]="submenu">
+            <i nz-icon nzType="bars"></i>
+        </button>
+
+        <nz-dropdown-menu class="submenu" #submenu="nzDropdownMenu">
+            <ul nz-menu>
+                <li nz-menu-item><a routerLink="/login">Login</a></li>
+            </ul>
+        </nz-dropdown-menu>
+    </div>
+    
+
+</nz-header>

@@ -13,12 +13,14 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { API } from '../util/env.utils';
 import { environment } from '../environments/environment';
-import { authenticationInterceptor } from '../interceptor/auth-interceptor';
+import { authenticationInterceptor } from '../core/interceptor/auth-interceptor';
+import { provideStore } from '@ngrx/store';
 
 registerLocaleData(en);
 
 export const appConfig: ApplicationConfig = {
     providers: [
+        provideStore(),
         provideZoneChangeDetection({eventCoalescing: true}),
         provideRouter(routes),
         provideNzI18n(en_US),

@@ -1,0 +1,25 @@
+.resource-container {
+    padding: 5px;
+}
+
+.resources-container {
+    padding: 10px;
+    width: 50%;
+}
+
+@media (max-width: 480px) {
+    .resources-container {
+        width: 100%;
+    }
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-title{
+    padding-left: 10px;
+}

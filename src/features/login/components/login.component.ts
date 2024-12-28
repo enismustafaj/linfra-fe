@@ -5,7 +5,10 @@ import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLab
 import { NzColDirective } from "ng-zorro-antd/grid";
 import { NzInputDirective } from "ng-zorro-antd/input";
 import { NzLayoutModule } from "ng-zorro-antd/layout";
-import { NzSpaceComponent, NzSpaceItemDirective } from "ng-zorro-antd/space";
+import { AuthService } from "../../../core/services/auth-service";
+import { UserState } from "../../../core/store/user.store";
+import { Store, StoreModule } from "@ngrx/store";
+import { userloggedInAction } from "../../../core/store/actions/user.actions";
 
 @Component({
   selector: "app-login",
@@ -21,8 +24,7 @@ import { NzSpaceComponent, NzSpaceItemDirective } from "ng-zorro-antd/space";
     NzButtonComponent,
     NzFormDirective,
     ReactiveFormsModule,
-    NzSpaceComponent,
-    NzSpaceItemDirective
+    StoreModule
   ],
   styleUrl: "./login.component.scss",
   templateUrl: "./login.component.html"
@@ -33,6 +35,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly formBuilder: NonNullableFormBuilder,
+    private authService: AuthService,
+    private userStore: Store<UserState>
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +47,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Functionality to be implemented")
+    this.authService.loginWithEmailPassword(
+      "",
+      ""
+    ).subscribe(
+      user => {
+        this.userStore.dispatch(userloggedInAction({user: user.user}))
+      }
+    )
   }
 }
