@@ -4,14 +4,18 @@
 
     <div class="dashboard-content">
     
-        <div class="resources-container">
-            @for (resource of resources$ | async; track resource) {
+        <div class="resources-container" *ngIf="resources$ | async as resources; else loading">
+            @for (resource of resources.resources; track resource) {
                 <div class="resource-container">
-                    <app-resource [resourceName]="resource.resouceName" [resourceProperties]="resource.resourceProperties"></app-resource>
+                    <app-resource [resourceName]="resource.name" [resourceProperties]="resource.properties"></app-resource>
                 </div>
             }
             
         </div>
+
+        <ng-template #loading>
+            <p>Loading your resources...</p>
+        </ng-template>
 
         <div>
             <button nz-button nzType="primary" class="add-resource-btn" nzShape="circle">
