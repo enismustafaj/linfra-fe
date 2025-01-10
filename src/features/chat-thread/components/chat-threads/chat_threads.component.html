@@ -1,0 +1,31 @@
+<div class="resource-threads">
+
+    <h2>Resource Threads</h2>
+
+    <div class="resource-overview">
+        Placeholder for the selected resource
+    </div>
+
+    <div class="resource-threads-container">
+        <diV class="chat-threads">
+
+            <ng-container *ngIf="chatThreads | async as chatThreads; else loading">
+                @for (thread of chatThreads; track $index) {
+                    <div class="chat-thread">
+                        <div>thread.threadName</div>
+                    </div>
+                }
+            </ng-container>
+
+            <ng-template #loading>
+                <p>Loading chat threads...</p>
+            </ng-template>
+
+        </diV>
+
+        <div class="resouorce-chat">
+            <app-resource-thread></app-resource-thread>
+        </div>
+    </div>
+
+</div>
