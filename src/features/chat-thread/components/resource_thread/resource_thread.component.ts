@@ -23,9 +23,7 @@ export class ResourceThreadComponent {
 
     inputMessage: string = ''
 
-    messages: string[] = [
-        
-    ]
+    messages: string[] = []
 
     getResourceChats() {
         console.log('Getting resource chats')
