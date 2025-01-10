@@ -1,0 +1,17 @@
+.resource-thread {
+    display: flex;
+    flex-direction: column;
+}
+
+.chats-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #333333;
+  
+}
+
+.chat-input {
+    margin-top: 10px;
+}

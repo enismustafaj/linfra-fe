@@ -12,7 +12,7 @@
             <ng-container *ngIf="chatThreads | async as chatThreads; else loading">
                 @for (thread of chatThreads; track $index) {
                     <div class="chat-thread">
-                        <div>thread.threadName</div>
+                        <div>{{thread.threadName}}</div>
                     </div>
                 }
             </ng-container>
@@ -21,9 +21,15 @@
                 <p>Loading chat threads...</p>
             </ng-template>
 
+            <div class="add-chat-thread">
+                <button nz-button nzType="primary" class="add-chat-thread-btn" nzShape="circle">
+                    <i nz-icon nzType="plus"></i>
+                </button>
+            </div>
+
         </diV>
 
-        <div class="resouorce-chat">
+        <div class="resource-chat">
             <app-resource-thread></app-resource-thread>
         </div>
     </div>

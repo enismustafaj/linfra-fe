@@ -1,15 +1,53 @@
 .resource-threads {
     padding: 20px;
+    height: calc(100vh - 150px);
 }
 
 .resource-threads-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     margin-top: 20px;
+    width: 100%;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
 }
 
 .chat-threads {
     display: flex;
     flex-direction: column;
+    width: 30%;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        
+    }
+}
+
+.chat-thread {
+    margin: 8px 0;
+    background-color:#333333;
+    padding: 0px 5px;
+    border-radius: 3px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.resource-chat {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.add-chat-thread {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin-top: 5px;
 }

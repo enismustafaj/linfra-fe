@@ -4,6 +4,8 @@ import { ChatThread } from "../../model/chat_thread.model";
 import { ChatThreadsService } from "../../services/chat_threads.service";
 import { ResourceThreadComponent } from "../resource_thread/resource_thread.component";
 import { CommonModule } from "@angular/common";
+import { NzIconModule } from "ng-zorro-antd/icon";
+import { NzButtonModule } from "ng-zorro-antd/button";
 
 @Component({
     selector: 'app-chat-threads',
@@ -13,6 +15,8 @@ import { CommonModule } from "@angular/common";
 
     imports: [
         CommonModule,
+        NzIconModule,
+        NzButtonModule,
         ResourceThreadComponent
     ],
     providers: [
