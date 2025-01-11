@@ -1,3 +1,3 @@
-export interface ResourceChatStore {
+export interface ResourceChatState {
     chatId: string | null;    
 }

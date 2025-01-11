@@ -11,7 +11,7 @@
 
             <ng-container *ngIf="chatThreads | async as chatThreads; else loading">
                 @for (thread of chatThreads; track $index) {
-                    <div class="chat-thread">
+                    <div class="chat-thread" (click)="selectChatThread(thread)">
                         <div>{{thread.threadName}}</div>
                     </div>
                 }
@@ -37,7 +37,6 @@
                     </nz-form-item>
                 </ng-container>
               </nz-modal>
-
         </diV>
 
         <div class="resource-chat">

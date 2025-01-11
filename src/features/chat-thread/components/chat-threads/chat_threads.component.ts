@@ -10,6 +10,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from "ng-zorro-antd/form";
 import { FormsModule } from "@angular/forms";
 import { NzInputModule } from "ng-zorro-antd/input";
+import { Store } from "@ngrx/store";
+import { ResourceChatState } from "../../store/resource_chat.store";
+import { selectResourceChatAction } from "../../store/action/resource_chat.action";
 
 @Component({
     selector: 'app-chat-threads',
@@ -39,7 +42,8 @@ export class ChatThreadsComponent implements OnInit {
     chatThreadName: string = ''
 
     constructor(
-        private chatThreadsService: ChatThreadsService
+        private chatThreadsService: ChatThreadsService,
+        private resourceStore: Store<ResourceChatState>
     ) { }
 
     ngOnInit(): void {
@@ -57,6 +61,10 @@ export class ChatThreadsComponent implements OnInit {
 
     showModal(): void {
         this.isVisible = true
+    }
+
+    selectChatThread(thread: ChatThread): void {
+        this.resourceStore.dispatch(selectResourceChatAction({chatId: thread.threadId}))
     }
 
 }
