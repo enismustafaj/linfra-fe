@@ -14,13 +14,17 @@ import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingServ
 import { API } from '../util/env.utils';
 import { environment } from '../environments/environment';
 import { authenticationInterceptor } from '../core/interceptor/auth-interceptor';
-import { provideStore } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
+import { resourceChatFeature } from '../features/chat-thread/store/reducer/resource_chat.reducer';
+import { userFeature } from '../core/store/reducers/user.reducer';
 
 registerLocaleData(en);
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideStore(),
+        provideState(resourceChatFeature),
+        provideState(userFeature),
         provideZoneChangeDetection({eventCoalescing: true}),
         provideRouter(routes),
         provideNzI18n(en_US),

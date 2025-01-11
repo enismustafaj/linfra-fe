@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from "@angular/router";
-import { select, Store } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { UserState } from "../store/user.store";
 import { map, take } from "rxjs";
+import { userSelector } from "../store/selector/user.selector";
 
 
 @Injectable({
@@ -18,9 +19,10 @@ export class AuthenticatedGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
 
         return true;
-        
-        return this.userStore.pipe(
-            select(state => state.user),
+
+        return this.userStore.select(
+            userSelector
+        ).pipe(
             take(1),
             map(state => {
                 if (state) {

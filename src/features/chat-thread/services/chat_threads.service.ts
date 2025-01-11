@@ -19,16 +19,16 @@ export class ChatThreadsService {
                 threadName: "name1"
             },
             {
-                threadId: "id1",
-                threadName: "name1"
+                threadId: "id2",
+                threadName: "name2"
             },
             {
-                threadId: "id1",
-                threadName: "name1"
+                threadId: "id3",
+                threadName: "name3"
             },
             {
-                threadId: "id1",
-                threadName: "name1"
+                threadId: "id4",
+                threadName: "name4"
             }
         ])
     }

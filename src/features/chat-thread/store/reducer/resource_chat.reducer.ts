@@ -1,12 +1,23 @@
-import { createReducer, on } from "@ngrx/store";
+import { createFeature, createReducer, on } from "@ngrx/store";
 import { selectResourceChatAction } from "../action/resource_chat.action";
 import { ResourceChatState } from "../resource_chat.store";
 
-export const resourceChatInitState: ResourceChatState = {
-    chatId: null
+const resourceChatInitState: ResourceChatState = {
+    chatId: "init"
 }
 
-export const resourceChatReducer = createReducer(
+const resourceChatReducer = createReducer(
     resourceChatInitState,
-    on(selectResourceChatAction, (state, { chatId }) => ({...state, chatId: chatId}))
+    on(selectResourceChatAction, (state, { chatId }) => {
+        return {
+            ...state,
+            chatId: chatId
+        }
+    })
 )
+
+
+export const resourceChatFeature = createFeature({
+    name: "resourceChat",
+    reducer: resourceChatReducer
+})

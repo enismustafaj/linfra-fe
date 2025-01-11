@@ -1,6 +1,10 @@
 .navbar {
     display: flex;
     flex-direction: row;
+
+    @media screen and (max-width: 480px) {
+        justify-content: space-between;
+    }
 }
 
 .logo {
@@ -12,6 +16,7 @@
 
     @media (max-width: 480px) {
         display: block
+        
     }
 }
 
