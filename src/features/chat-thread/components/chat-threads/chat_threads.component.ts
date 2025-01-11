@@ -6,6 +6,10 @@ import { ResourceThreadComponent } from "../resource_thread/resource_thread.comp
 import { CommonModule } from "@angular/common";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzFormModule } from "ng-zorro-antd/form";
+import { FormsModule } from "@angular/forms";
+import { NzInputModule } from "ng-zorro-antd/input";
 
 @Component({
     selector: 'app-chat-threads',
@@ -17,7 +21,11 @@ import { NzButtonModule } from "ng-zorro-antd/button";
         CommonModule,
         NzIconModule,
         NzButtonModule,
-        ResourceThreadComponent
+        ResourceThreadComponent,
+        NzModalModule,
+        NzFormModule,
+        FormsModule,
+        NzInputModule
     ],
     providers: [
         ChatThreadsService
@@ -27,12 +35,28 @@ export class ChatThreadsComponent implements OnInit {
 
     chatThreads: Observable<ChatThread[]> = of([])
 
+    isVisible: boolean = false
+    chatThreadName: string = ''
+
     constructor(
         private chatThreadsService: ChatThreadsService
     ) { }
 
     ngOnInit(): void {
         this.chatThreads = this.chatThreadsService.getChatThreads()
+    }
+
+    handleOk(): void {
+        // this.chatThreadsService.createChatThread()
+        this.isVisible = false
+    }
+
+    handleCancel(): void {
+        this.isVisible = false
+    }
+
+    showModal(): void {
+        this.isVisible = true
     }
 
 }

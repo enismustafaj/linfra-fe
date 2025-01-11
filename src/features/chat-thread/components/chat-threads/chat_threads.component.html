@@ -22,10 +22,21 @@
             </ng-template>
 
             <div class="add-chat-thread">
-                <button nz-button nzType="primary" class="add-chat-thread-btn" nzShape="circle">
+                <button nz-button nzType="primary" class="add-chat-thread-btn" nzShape="circle" (click)="showModal()">
                     <i nz-icon nzType="plus"></i>
                 </button>
             </div>
+
+            <nz-modal [(nzVisible)]="isVisible" nzTitle="Create new resource chat" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                <ng-container *nzModalContent>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6">Chat Thread Name</nz-form-label>
+                        <nz-form-control [nzSpan]="14" style="margin-left: 5px;">
+                            <input nz-input [(ngModel)]="chatThreadName" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+              </nz-modal>
 
         </diV>
 
