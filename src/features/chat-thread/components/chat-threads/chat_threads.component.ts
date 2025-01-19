@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable, of, take, tap } from "rxjs";
 import { ChatThread } from "../../model/chat_thread.model";
 import { ChatThreadsService } from "../../services/chat_threads.service";
 import { ResourceThreadComponent } from "../resource_thread/resource_thread.component";
@@ -51,7 +51,13 @@ export class ChatThreadsComponent implements OnInit {
     }
 
     handleOk(): void {
-        // this.chatThreadsService.createChatThread()
+        this.chatThreadsService.createChatThread(this.chatThreadName)
+        .pipe(
+            take(1),
+            tap(() => {
+                this.chatThreads = this.chatThreadsService.getChatThreads()
+            })
+        ).subscribe()
         this.isVisible = false
     }
 
@@ -64,7 +70,7 @@ export class ChatThreadsComponent implements OnInit {
     }
 
     selectChatThread(thread: ChatThread): void {
-        this.resourceStore.dispatch(selectResourceChatAction({chatId: thread.threadId}))
+        this.resourceStore.dispatch(selectResourceChatAction({chatId: thread.chatThreadId}))
     }
 
 }

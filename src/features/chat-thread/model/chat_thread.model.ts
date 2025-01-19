@@ -1,4 +1,4 @@
 export interface ChatThread {
-    threadId: string;
-    threadName: string;
+    chatThreadId: string;
+    chatThreadName: string;
 }

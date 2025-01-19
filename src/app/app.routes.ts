@@ -7,7 +7,8 @@ import { AuthenticatedGuard } from '../core/guards/authenticated.guard';
 import { ChatThreadsComponent } from '../features/chat-thread/components/chat-threads/chat_threads.component';
 
 export const routes: Routes = [
-  { path: '', component: WaitlistComponent },
+  { path: 'waitlist', component: WaitlistComponent },
+  { path: '', redirectTo: 'waitlist', pathMatch: 'full' },
   { path: 'privacy', component: PrivacyPolicyComponent },
   { path: 'login', component: LoginComponent },
   { path: "dashboard", component: DashboardComponent, canActivate: [AuthenticatedGuard] },

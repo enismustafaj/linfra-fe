@@ -3,7 +3,7 @@ import { selectResourceChatAction } from "../action/resource_chat.action";
 import { ResourceChatState } from "../resource_chat.store";
 
 const resourceChatInitState: ResourceChatState = {
-    chatId: "init"
+    chatId: ""
 }
 
 const resourceChatReducer = createReducer(

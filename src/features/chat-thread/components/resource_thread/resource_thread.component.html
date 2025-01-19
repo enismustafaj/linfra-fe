@@ -1,6 +1,5 @@
 <div class="resource-thread">
     <div class="chats-container">
-
         @for (message of messages; track $index) {
             <div class="chat">
                 <div class="chat-message">{{message}}</div>
@@ -8,13 +7,13 @@
         }
     </div>
     <div class="chat-input">
-        <nz-input-group [nzAddOnAfter]="sendButtonTemplate">
-            <input type="text" nz-input />
-          </nz-input-group>
+        <nz-input-group [nzAddOnAfter]="sendButtonTemplate" >
+            <input type="text" nz-input [readOnly]="!messageInputEnabled" />
+        </nz-input-group>
 
     </div>
 
     <ng-template #sendButtonTemplate>
-        <i nz-icon nzType="send"></i>
+        <i nz-icon nzType="send" (click)="sendMessage()"></i>
     </ng-template>
 </div>

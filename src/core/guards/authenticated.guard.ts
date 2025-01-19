@@ -18,8 +18,6 @@ export class AuthenticatedGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
 
-        return true;
-
         return this.userStore.select(
             userSelector
         ).pipe(

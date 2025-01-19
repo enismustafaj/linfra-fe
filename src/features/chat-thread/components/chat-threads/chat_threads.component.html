@@ -12,7 +12,7 @@
             <ng-container *ngIf="chatThreads | async as chatThreads; else loading">
                 @for (thread of chatThreads; track $index) {
                     <div class="chat-thread" (click)="selectChatThread(thread)">
-                        <div>{{thread.threadName}}</div>
+                        <div>{{thread.chatThreadName}}</div>
                     </div>
                 }
             </ng-container>
