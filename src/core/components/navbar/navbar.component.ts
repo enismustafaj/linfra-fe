@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { NzButtonModule } from "ng-zorro-antd/button";
@@ -18,7 +19,8 @@ import { NzMenuModule, NzSubMenuComponent, NzSubmenuService } from 'ng-zorro-ant
         NzDropDownModule,
         NzButtonModule,
         NzIconModule,
-        RouterModule
+        RouterModule,
+        CommonModule
     ]
 })
 export class NavBarComponent {

@@ -14,8 +14,12 @@ import { NzIconModule } from "ng-zorro-antd/icon";
     standalone: true,   
 
     providers: [ResourceService],
-    imports: [CommonModule, ResourceComponent, NzButtonModule, NzIconModule]
-    
+    imports: [
+        CommonModule, 
+        ResourceComponent, 
+        NzButtonModule, 
+        NzIconModule,
+    ]
 })
 export class DashboardComponent implements OnInit {
 
