@@ -18,6 +18,6 @@ import { NzSpaceComponent } from 'ng-zorro-antd/space';
 export class PrivacyPolicyComponent {
 
     onEmail(): void {
-        window.open('mailto:me@sabirotmane.com', '_blank');
+        window.open('mailto:contact@linfra.ai', '_blank');
     }
 }

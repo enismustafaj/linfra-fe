@@ -17,6 +17,7 @@ import { authenticationInterceptor } from '../core/interceptor/auth-interceptor'
 import { provideState, provideStore } from '@ngrx/store';
 import { resourceChatFeature } from '../features/chat-thread/store/reducer/resource_chat.reducer';
 import { userFeature } from '../core/store/reducers/user.reducer';
+import {AnalyticsService} from '../core/services/analytics-service';
 
 registerLocaleData(en);
 
@@ -38,5 +39,7 @@ export const appConfig: ApplicationConfig = {
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()),
         ScreenTrackingService,
-        UserTrackingService]
+        UserTrackingService,
+        AnalyticsService,
+      ]
 };

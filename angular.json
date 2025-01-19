@@ -34,7 +34,10 @@
                                 "glob": "**/*",
                                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
                                 "output": "/assets/"
-                            }
+                            },
+                          "src/sitemap.xml",
+                          "src/robots.txt"
+
                         ],
                         "styles": [
                             "./node_modules/ng-zorro-antd/ng-zorro-antd.dark.css",
@@ -100,7 +103,9 @@
                             {
                                 "glob": "**/*",
                                 "input": "public"
-                            }
+                            },
+                          "src/sitemap.xml",
+                          "src/robots.txt"
                         ],
                         "styles": [
                             "./node_modules/ng-zorro-antd/ng-zorro-antd.dark.css",

@@ -15,8 +15,8 @@ import { FirebaseApp } from '@angular/fire/app';
 export class AuthService {
   private readonly _auth: Auth;
 
-  constructor(private readonly ofApp: FirebaseApp) {
-    this._auth = getAuth(ofApp);
+  constructor(private readonly _ofApp: FirebaseApp) {
+    this._auth = getAuth(_ofApp);
   }
 
   loginWithEmailPassword(email: string, password: string): Observable<UserCredential> {
