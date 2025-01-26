@@ -1,0 +1,19 @@
+.resource-overview-container {
+    padding: 10px;
+    font-size: 16px;
+}
+.resource-overview-details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}   
+
+.resource-attribute:not(:last-child)::after {
+    content: "|";
+    margin: 0 10px;
+}
+
+.resource-secrets {
+    margin-right: 10px;
+    cursor: pointer;
+}

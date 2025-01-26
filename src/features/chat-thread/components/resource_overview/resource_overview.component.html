@@ -1,0 +1,14 @@
+<div class="resource-overview-container">
+
+    <div *ngIf="selectedResource | async as resource; else placeholder" class="resource-overview-details">
+        <div class="resource-attribute">{{resource.name}}</div>
+        <div class="resource-attribute">Type: {{resource.resourceType}}</div>
+        <div class="resource-attribute">Status: {{resource.status}}</div>
+        <div class="resource-secrets" nz-tooltip nzTooltipTitle="Reveal resource credentials"><i nz-icon nzType="lock" (click)="revealSecrets()"></i></div>
+    </div>
+
+    <ng-template #placeholder>
+        <p>Select a resource thread to view details...</p>
+    </ng-template>
+
+</div>

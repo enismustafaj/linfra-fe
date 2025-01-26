@@ -13,6 +13,7 @@ import { NzInputModule } from "ng-zorro-antd/input";
 import { Store } from "@ngrx/store";
 import { ResourceChatState } from "../../store/resource_chat.store";
 import { selectResourceChatAction } from "../../store/action/resource_chat.action";
+import { ResourceOverviewComponent } from "../resource_overview/resource_overview.component";
 
 @Component({
     selector: 'app-chat-threads',
@@ -21,15 +22,16 @@ import { selectResourceChatAction } from "../../store/action/resource_chat.actio
     standalone: true,
 
     imports: [
-        CommonModule,
-        NzIconModule,
-        NzButtonModule,
-        ResourceThreadComponent,
-        NzModalModule,
-        NzFormModule,
-        FormsModule,
-        NzInputModule
-    ],
+    CommonModule,
+    NzIconModule,
+    NzButtonModule,
+    ResourceThreadComponent,
+    NzModalModule,
+    NzFormModule,
+    FormsModule,
+    NzInputModule,
+    ResourceOverviewComponent
+],
     providers: [
         ChatThreadsService
     ]

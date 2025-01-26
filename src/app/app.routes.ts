@@ -4,7 +4,7 @@ import { PrivacyPolicyComponent } from '../features/privacy-policy/privacy-polic
 import { LoginComponent } from '../features/login/components/login.component';
 import { DashboardComponent } from '../features/dashboard/components/dashboard/dashboard.component';
 import { AuthenticatedGuard } from '../core/guards/authenticated.guard';
-import { ChatThreadsComponent } from '../features/chat-thread/components/chat-threads/chat_threads.component';
+import { ChatThreadsComponent } from '../features/chat-thread/components/chat_threads/chat_threads.component';
 
 export const routes: Routes = [
   { path: 'waitlist', component: WaitlistComponent },

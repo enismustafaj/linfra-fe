@@ -3,6 +3,7 @@ import { RestService } from "../../../core/services/rest.service";
 import { map, Observable, of } from "rxjs";
 import { ChatThread } from "../model/chat_thread.model";
 import { ChatPrompt } from "../model/chat_prompt.model";
+import { ResourceOverview } from "../model/resource_overview.model";
 
 @Injectable()
 export class ChatThreadsService {
@@ -10,6 +11,8 @@ export class ChatThreadsService {
     private chatThreadsUtl: string = '/v1/threads'
 
     private chatMessagesUrl: string = '/v1/threads/:threadId'
+
+    private resourceOverviewUrl: string = '/v1/resources/chat-threads/:chatThreadId'
 
     constructor(private restClient: RestService) { }
 
@@ -43,6 +46,10 @@ export class ChatThreadsService {
                 return response["prompts"]
             })
         )
+    }
+
+    getResourceOverview(chatThreadId: string): Observable<ResourceOverview> {
+        return this.restClient.getRequest(this.resourceOverviewUrl.replace(':chatThreadId', chatThreadId))
     }
 
 }
