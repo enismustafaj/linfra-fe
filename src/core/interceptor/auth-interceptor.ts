@@ -8,8 +8,6 @@ import { catchError, mergeMap, of } from 'rxjs';
 import { AuthService } from '../services/auth-service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
-
-
 export const authenticationInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next:
 HttpHandlerFn) => {
     const auth = inject(AuthService);
