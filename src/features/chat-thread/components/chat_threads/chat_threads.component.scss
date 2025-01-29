@@ -29,16 +29,26 @@
     overflow-y: auto;
 }
 
-.chat-thread {
+.chat-thread-static {
     margin: 8px 0;
-    background-color:#333333;
+    background-color:#000000;
     padding: 0px 5px;
     border-radius: 3px;
     height: 45px;
     cursor: pointer;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    border: 1px solid #c7c7c7;
 }
+
+.chat-thread-edit {
+    margin: 8px 0;
+    padding: 0px 5px;
+    height: 50px;
+}
+
 
 .resource-chat {
     padding: 10px;

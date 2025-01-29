@@ -93,4 +93,8 @@ export class ResourceThreadComponent implements OnInit, OnDestroy {
             this.messages = messages
         })
     }
+
+    applyAction() {
+        console.log("Applying action")
+    }
 }

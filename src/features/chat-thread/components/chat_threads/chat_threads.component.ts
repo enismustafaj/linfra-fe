@@ -6,7 +6,6 @@ import { ResourceThreadComponent } from "../resource_thread/resource_thread.comp
 import { CommonModule } from "@angular/common";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzButtonModule } from "ng-zorro-antd/button";
-import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from "ng-zorro-antd/form";
 import { FormsModule } from "@angular/forms";
 import { NzInputModule } from "ng-zorro-antd/input";
@@ -26,7 +25,6 @@ import { ResourceOverviewComponent } from "../resource_overview/resource_overvie
     NzIconModule,
     NzButtonModule,
     ResourceThreadComponent,
-    NzModalModule,
     NzFormModule,
     FormsModule,
     NzInputModule,
@@ -38,10 +36,12 @@ import { ResourceOverviewComponent } from "../resource_overview/resource_overvie
 })
 export class ChatThreadsComponent implements OnInit {
 
-    chatThreads: Observable<ChatThread[]> = of([])
+    chatThreads: Observable<ChatThread[]> = of()
 
     isVisible: boolean = false
-    chatThreadName: string = ''
+    private chatThreadName: string = 'Untitled thread'
+
+    edittingThread: string = "";
 
     constructor(
         private chatThreadsService: ChatThreadsService,
@@ -52,7 +52,7 @@ export class ChatThreadsComponent implements OnInit {
         this.chatThreads = this.chatThreadsService.getChatThreads()
     }
 
-    handleOk(): void {
+    createThread(): void {
         this.chatThreadsService.createChatThread(this.chatThreadName)
         .pipe(
             take(1),
@@ -60,19 +60,22 @@ export class ChatThreadsComponent implements OnInit {
                 this.chatThreads = this.chatThreadsService.getChatThreads()
             })
         ).subscribe()
-        this.isVisible = false
-    }
-
-    handleCancel(): void {
-        this.isVisible = false
-    }
-
-    showModal(): void {
-        this.isVisible = true
     }
 
     selectChatThread(thread: ChatThread): void {
         this.resourceStore.dispatch(selectResourceChatAction({chatId: thread.chatThreadId}))
+    }
+
+    editThread(threadId: string): void {
+        this.edittingThread = threadId
+    }
+
+    saveThread(threadId: string): void {
+        this.chatThreadsService.editThreadName(threadId, this.chatThreadName)
+    }
+
+    cancelEdit(): void {
+        this.edittingThread = ""
     }
 
 }

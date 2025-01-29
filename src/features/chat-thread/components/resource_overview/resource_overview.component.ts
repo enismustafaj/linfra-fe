@@ -23,11 +23,7 @@ export class ResourceOverviewComponent {
     chatId$: Observable<string | null> = of(null)
     private chatIdSubscription: Subscription | null = null
 
-    selectedResource: Observable<ResourceOverview | null> = of({
-        "name": "resource",
-        "resourceType": "DB",
-        "status": "running"
-    })
+    selectedResource: Observable<ResourceOverview | null> = of()
 
     constructor(
         private chatThreadsService: ChatThreadsService,

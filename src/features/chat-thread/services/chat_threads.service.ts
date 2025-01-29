@@ -52,4 +52,10 @@ export class ChatThreadsService {
         return this.restClient.getRequest(this.resourceOverviewUrl.replace(':chatThreadId', chatThreadId))
     }
 
+    editThreadName(threadId: string, threadName: string): Observable<any> {
+        return this.restClient.putRequest(this.chatThreadsUtl + '/' + threadId, {
+            threadName: threadName
+        })
+    }
+
 }

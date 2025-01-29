@@ -9,9 +9,34 @@
 
             <ng-container *ngIf="chatThreads | async as chatThreads; else loading">
                 @for (thread of chatThreads; track $index) {
-                    <div class="chat-thread" (click)="selectChatThread(thread)">
-                        <div>{{thread.chatThreadName}}</div>
-                    </div>
+
+                    @if (edittingThread == thread.chatThreadId) {
+                        <div class="chat-thread-edit">
+                            <nz-input-group [nzSuffix]="actions">
+                                <input type="text" nz-input placeholder="input search text" [value]="thread.chatThreadName" />
+                            </nz-input-group>
+
+                            <ng-template #actions>
+                                <button nz-button nzType="default" nzSize="small" (click)="saveThread(thread.chatThreadId)">
+                                    <i nz-icon nzType="check"></i>
+                                </button>
+                                <button nz-button nzType="default" nzSize="small" (click)="cancelEdit()">
+                                    <i nz-icon nzType="close"></i>
+                                </button>
+                            </ng-template>
+                        </div>
+
+                    } @else {
+                        <div class="chat-thread-static">
+                            <div (click)="selectChatThread(thread)">{{thread.chatThreadName}}</div>
+                            <div class="thread-actions">
+                                <button nz-button nzType="default" nzSize="small" (click)="editThread(thread.chatThreadId)">
+                                    <i nz-icon nzType="edit"></i>
+                                </button>
+                            </div>
+                        </div>
+                    } 
+                    
                 }
             </ng-container>
 
@@ -20,21 +45,10 @@
             </ng-template>
 
             <div class="add-chat-thread">
-                <button nz-button nzType="primary" class="add-chat-thread-btn" nzShape="circle" (click)="showModal()">
+                <button nz-button nzType="primary" class="add-chat-thread-btn" nzShape="circle" (click)="createThread()">
                     <i nz-icon nzType="plus"></i>
                 </button>
             </div>
-
-            <nz-modal [(nzVisible)]="isVisible" nzTitle="Create new resource chat" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-                <ng-container *nzModalContent>
-                    <nz-form-item>
-                        <nz-form-label [nzSpan]="6">Chat Thread Name</nz-form-label>
-                        <nz-form-control [nzSpan]="14" style="margin-left: 5px;">
-                            <input nz-input [(ngModel)]="chatThreadName" />
-                        </nz-form-control>
-                    </nz-form-item>
-                </ng-container>
-              </nz-modal>
         </diV>
 
         <div class="resource-chat">
