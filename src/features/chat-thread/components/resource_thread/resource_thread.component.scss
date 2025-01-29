@@ -21,6 +21,15 @@
   
 }
 
+.empty-chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    height: 100%;
+}
+
+
 .chat-input {
     margin-top: 10px;
 }
