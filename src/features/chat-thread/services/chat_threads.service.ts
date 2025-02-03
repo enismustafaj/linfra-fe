@@ -10,7 +10,7 @@ export class ChatThreadsService {
 
     private chatThreadsUtl: string = '/v1/threads'
 
-    private chatMessagesUrl: string = '/v1/threads/:threadId'
+    private chatMessagesUrl: string = '/v1/threads/:threadId/conversations'
 
     private resourceOverviewUrl: string = '/v1/resources/chat-threads/:chatThreadId'
 
