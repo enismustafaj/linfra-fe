@@ -9,6 +9,7 @@ import { AuthService } from "../../../core/services/auth-service";
 import { UserState } from "../../../core/store/user.store";
 import { Store, StoreModule } from "@ngrx/store";
 import { userloggedInAction } from "../../../core/store/actions/user.actions";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -24,7 +25,8 @@ import { userloggedInAction } from "../../../core/store/actions/user.actions";
     NzButtonComponent,
     NzFormDirective,
     ReactiveFormsModule,
-    StoreModule
+    StoreModule,
+    RouterLink
   ],
   styleUrl: "./login.component.scss",
   templateUrl: "./login.component.html"
