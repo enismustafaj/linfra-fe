@@ -1,0 +1,53 @@
+<div class="signup-form">
+    <h2>Sign Up</h2>
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <nz-form-item>
+            <nz-form-label nzFor="fullName" nzRequired>Full Name</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="fullName" placeholder="Enter your full name"
+                        name="fullName" type="text"
+                        id="fullName"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label nzFor="email" nzRequired>Email</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="email" placeholder="Enter your email"
+                        name="email" type="text"
+                        id="email"/>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzFor="password" nzRequired>Password</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="password" placeholder="Enter your password"
+                        name="password" type="password"
+                        id="password"/>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzFor="confirm_password" nzRequired>Confirm Password</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="confirmPassword" placeholder="Retype password"
+                        name="confirmPassword" type="password"
+                        id="confirmPassword"/>
+            </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button class="signup-form__button" nzType="primary" [disabled]="!form.valid" type="submit">Login</button>
+    </form>
+    <div class="login-prompt">
+        Already have an account? <a routerLink="/login">Log in now!</a>
+    </div>
+
+    @if (successfullSignup) {
+        <div class="success-message">
+            User created successfully. Please proceed to login page!
+        </div>
+    }
+</div>
+  
+  
+  

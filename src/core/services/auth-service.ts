@@ -8,6 +8,8 @@ import {
 } from '@angular/fire/auth';
 import { EMPTY, from, Observable, of, switchMap } from 'rxjs';
 import { FirebaseApp } from '@angular/fire/app';
+import { RestService } from './rest.service';
+import { NewUser } from '../model/new_user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,9 @@ import { FirebaseApp } from '@angular/fire/app';
 export class AuthService {
   private readonly _auth: Auth;
 
-  constructor(private readonly _ofApp: FirebaseApp) {
+  private signupUrl: string = '/api/v1/users';
+
+  constructor(private readonly _ofApp: FirebaseApp, private restService: RestService) {
     this._auth = getAuth(_ofApp);
   }
 
@@ -25,6 +29,10 @@ export class AuthService {
 
   login(): Observable<UserCredential> {
     return from(signInAnonymously(this._auth));
+  }
+
+  signup(newUser: NewUser): Observable<void> {
+    return this.restService.postRequest(this.signupUrl, newUser);
   }
 
   get token(): Observable<string> {

@@ -2,7 +2,7 @@
   <h2>Login</h2>
   <form nz-form [nzLayout]="'vertical'" [formGroup]="form" (ngSubmit)="onSubmit()">
     <nz-form-item>
-      <nz-form-label nzFor="name" nzRequired>email</nz-form-label>
+      <nz-form-label nzFor="email" nzRequired>email</nz-form-label>
       <nz-form-control>
         <input nz-input formControlName="email" placeholder="Enter your email"
                 name="email" type="text"
@@ -22,7 +22,7 @@
     <button nz-button class="login-form__button" nzType="primary" type="submit">Login</button>
   </form>
   <div class="register-prompt">
-    Don't have an account? <a>Register now!</a>
+    Don't have an account? <a routerLink="/signup">Register now!</a>
   </div>
 </div>
 
