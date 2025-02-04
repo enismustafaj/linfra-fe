@@ -4,6 +4,7 @@ import { PrivacyPolicyComponent } from '../features/privacy-policy/privacy-polic
 import { LoginComponent } from '../features/login/components/login.component';
 import { DashboardComponent } from '../features/dashboard/components/dashboard/dashboard.component';
 import { AuthenticatedGuard } from '../core/guards/authenticated.guard';
+import { SignupComponent } from '../features/signup/components/signup/signup.component';
 import { ChatThreadsComponent } from '../features/chat-thread/components/chat_threads/chat_threads.component';
 
 export const routes: Routes = [
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'privacy', component: PrivacyPolicyComponent },
   { path: 'login', component: LoginComponent },
   { path: "dashboard", component: DashboardComponent, canActivate: [AuthenticatedGuard] },
-  { path: "resource-chats", component: ChatThreadsComponent, canActivate: [AuthenticatedGuard] }
+  { path: "resource-chats", component: ChatThreadsComponent, canActivate: [AuthenticatedGuard] },
+  { path: "signup", component: SignupComponent },
 ];
