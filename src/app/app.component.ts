@@ -1,15 +1,10 @@
-import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {FooterComponent} from '../core/components/footer/footer.component';
-import {NzLayoutModule} from 'ng-zorro-antd/layout';
-import {NavBarComponent} from '../core/components/navbar/navbar.component';
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FooterComponent, NzLayoutModule, NavBarComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
-export class AppComponent {
-}
+export class AppComponent {}

@@ -1,0 +1,23 @@
+@let d = draft();
+<div class="pick">
+  <strong>{{ d.pick.entry.instanceType }}</strong>
+  <span class="muted">in {{ d.pick.entry.region }}</span>
+  <span class="price">€{{ d.pick.cost.total | number: '1.2-2' }}/mo</span>
+</div>
+<div class="muted small">
+  {{ d.pick.entry.vcpu }} vCPU · {{ d.pick.entry.memoryGb }} GB · {{ d.pick.entry.cpuModel | lowercase }} CPU ·
+  {{ d.pick.entry.architecture }} · {{ d.pick.diskGb }} GB {{ d.pick.entry.storage === 'NETWORK' ? 'volume' : 'local disk' }}
+</div>
+<div class="muted small">
+  instance €{{ d.pick.cost.instance | number: '1.2-2' }} · disk €{{ d.pick.cost.disk | number: '1.2-2' }} ·
+  egress €{{ d.pick.cost.egress | number: '1.2-2' }} · IPv4 €{{ d.pick.cost.ipv4 | number: '1.2-2' }}
+</div>
+@if (d.pick.preferencesMet.length) {
+  <div class="small ok">✓ {{ d.pick.preferencesMet.join(', ') }}</div>
+}
+@if (d.pick.preferencesMissed.length) {
+  <div class="small warn">✗ not met: {{ d.pick.preferencesMissed.join(', ') }}</div>
+}
+@if (showExplanation() && d.explanation) {
+  <p class="small">{{ d.explanation }}</p>
+}

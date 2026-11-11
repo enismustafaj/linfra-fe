@@ -1,1 +1,157 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #f7f7f8;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --muted: #6b6b73;
+  --border: #e3e3e8;
+  --accent: #3355ff;
+  --ok: #1a7f45;
+  --warn: #b25e00;
+  --bad: #c62828;
+  --busy: #5a4bd1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141416;
+    --surface: #1d1d20;
+    --text: #ececf0;
+    --muted: #9a9aa5;
+    --border: #2e2e33;
+    --accent: #7b93ff;
+    --ok: #4cc27f;
+    --warn: #f0a24a;
+    --bad: #ff6b6b;
+    --busy: #a99cff;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.5 system-ui, -apple-system, sans-serif;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo { font-weight: 700; }
+nav { display: flex; gap: 12px; flex: 1; }
+nav a { color: var(--muted); text-decoration: none; }
+nav a.active { color: var(--text); font-weight: 600; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 20px; margin: 0; }
+
+.toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.toolbar h1 { flex: 1; }
+
+input {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  min-width: 0;
+}
+
+button {
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.danger { color: var(--bad); border-color: var(--bad); }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card-head { display: flex; justify-content: space-between; align-items: center; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+
+.chat-layout { display: grid; grid-template-columns: 240px 1fr; gap: 16px; align-items: start; }
+.threads {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+.threads > button { margin-bottom: 8px; }
+.thread { display: flex; flex-direction: column; padding: 8px 10px; border-radius: 6px; color: var(--text); text-decoration: none; }
+.thread:hover { background: var(--surface); }
+.thread.active { background: var(--surface); border: 1px solid var(--border); }
+.thread-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.conversation { min-width: 0; }
+
+.messages { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.message { max-width: 80%; display: flex; flex-direction: column; gap: 6px; }
+.message .content { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; white-space: pre-wrap; }
+.message.user { align-self: flex-end; }
+.message.user .content { background: var(--accent); border-color: var(--accent); color: #fff; }
+.message .card button { align-self: flex-start; }
+
+.composer { display: flex; gap: 8px; }
+.composer input { flex: 1; }
+
+.pick { display: flex; gap: 6px; align-items: baseline; }
+.price { margin-left: auto; font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 500; }
+
+.badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; border: 1px solid currentColor; }
+.badge.ok { color: var(--ok); }
+.badge.bad { color: var(--bad); }
+.badge.busy { color: var(--busy); }
+.badge.neutral { color: var(--muted); }
+
+.form { display: flex; flex-direction: column; gap: 16px; max-width: 560px; }
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field > span { font-weight: 600; }
+.checks { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.checks label, .inline { display: flex; align-items: center; gap: 6px; }
+.meter { height: 8px; border-radius: 999px; background: var(--border); overflow: hidden; }
+.meter > div { height: 100%; background: var(--accent); }
+.meter.over > div { background: var(--bad); }
+
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.mono { font-family: ui-monospace, monospace; }
+.ok { color: var(--ok); }
+.warn { color: var(--warn); }
+.error { color: var(--bad); }
+p { margin: 0; }
+
+@media (max-width: 600px) {
+  .chat-layout { grid-template-columns: 1fr; }
+  .threads { position: static; max-height: 240px; }
+  .message { max-width: 100%; }
+  table { display: block; overflow-x: auto; }
+}

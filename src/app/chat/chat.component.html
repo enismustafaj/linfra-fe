@@ -1,0 +1,49 @@
+<div class="chat-layout">
+  <aside class="threads">
+    <button class="primary" (click)="newConversation()" [disabled]="busy()">New conversation</button>
+    @for (t of threads(); track t.id) {
+      <a class="thread" [routerLink]="['/chat', t.id]" routerLinkActive="active">
+        <span class="thread-title">{{ t.title ?? 'New conversation' }}</span>
+        <span class="muted small">{{ t.createdAt | date: 'short' }}</span>
+      </a>
+    } @empty {
+      <p class="muted small">No conversations yet.</p>
+    }
+  </aside>
+
+  <section class="conversation">
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+
+    @if (conversation(); as c) {
+      <div class="messages">
+        @for (m of c.messages; track m.id) {
+          <div class="message" [class.user]="m.role === 'USER'">
+            <div class="content">{{ m.content }}</div>
+
+            @if (m.draft) {
+              <div class="card">
+                <app-draft-summary [draft]="m.draft" />
+                @if (intentFor(m); as intent) {
+                  <div class="small">Intent created: <app-state-badge [state]="intent.state" /></div>
+                } @else if (m.id === latestDraftId()) {
+                  <button class="primary" (click)="confirm(m)" [disabled]="busy()">Confirm</button>
+                }
+              </div>
+            }
+          </div>
+        } @empty {
+          <p class="muted">Describe what you need, e.g. "a small VM for our staging API in the EU".</p>
+        }
+      </div>
+
+      <form class="composer" (ngSubmit)="send()">
+        <input name="text" [(ngModel)]="text" placeholder="Message" [disabled]="busy()" autocomplete="off" />
+        <button class="primary" type="submit" [disabled]="busy() || !text.trim()">{{ busy() ? 'Thinking…' : 'Send' }}</button>
+      </form>
+    } @else {
+      <p class="muted">Pick a conversation on the left, or start a new one.</p>
+    }
+  </section>
+</div>

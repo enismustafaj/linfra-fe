@@ -1,0 +1,39 @@
+<div class="toolbar">
+  <h1>Resources</h1>
+  <button (click)="load()">Refresh</button>
+</div>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (resources()?.length) {
+  <table>
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Instance type</th>
+        <th>Region</th>
+        <th>IP</th>
+        <th>Container</th>
+        <th>Created</th>
+        <th>Last seen</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of resources(); track r.id) {
+        <tr>
+          <td><app-state-badge [state]="r.status" /></td>
+          <td>{{ r.instanceType }}</td>
+          <td>{{ r.region }}</td>
+          <td class="mono">{{ r.outputs.ipv4 ?? '—' }}</td>
+          <td class="mono" [title]="r.cloudId">{{ r.cloudId.slice(0, 12) }}</td>
+          <td>{{ r.createdAt | date: 'short' }}</td>
+          <td>{{ r.lastSeenAt ? (r.lastSeenAt | date: 'short') : '—' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+} @else if (resources()) {
+  <p class="muted">No resources yet.</p>
+}

@@ -1,0 +1,39 @@
+<div class="toolbar">
+  <h1>Intents</h1>
+  <button (click)="load()">Refresh</button>
+</div>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+<div class="grid">
+  @for (i of intents(); track i.id) {
+    <div class="card">
+      <div class="card-head">
+        <app-state-badge [state]="i.state" />
+        <span class="muted small">{{ i.createdAt | date: 'short' }}</span>
+      </div>
+      <p>{{ i.spec.requirements.purpose }} <span class="muted small">({{ i.spec.requirements.environment | lowercase }})</span></p>
+      <app-draft-summary [draft]="i.spec" [showExplanation]="false" />
+      @if (i.decisionReason) {
+        <div class="small" [class.warn]="i.state === 'PLANNED'" [class.error]="i.state === 'REJECTED'">{{ i.decisionReason }}</div>
+      }
+      @if (i.state === 'PLANNED') {
+        <div class="actions">
+          <button class="primary" (click)="act(i, 'approve')" [disabled]="busy()">Approve</button>
+          <button class="danger" (click)="act(i, 'reject')" [disabled]="busy()">Reject</button>
+        </div>
+      } @else if (i.state === 'PROPOSED' || i.state === 'EXPIRED') {
+        <div class="actions">
+          <button (click)="act(i, 'plan')" [disabled]="busy()">{{ i.state === 'EXPIRED' ? 'Re-plan' : 'Plan' }}</button>
+        </div>
+      }
+      <div class="muted small mono">{{ i.id }}</div>
+    </div>
+  } @empty {
+    @if (intents()) {
+      <p class="muted">No intents yet. Confirm a draft in the chat to create one.</p>
+    }
+  }
+</div>

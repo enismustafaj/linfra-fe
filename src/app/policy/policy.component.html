@@ -1,0 +1,78 @@
+<div class="toolbar">
+  <h1>Policy</h1>
+</div>
+<p class="muted small">
+  Checked on every request before anything is created. Within it, requests are approved automatically; above the
+  auto-approve limit or in production, someone approves them on the Intents page; outside the allowed types, regions
+  or budget, they're rejected.
+</p>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (policy(); as p) {
+  <form class="form" (ngSubmit)="save()">
+    @if (p.isDefault) {
+      <p class="small warn">Using the default policy. Saving creates this tenant's own.</p>
+    }
+
+    <div class="field">
+      <span>Monthly budget</span>
+      <div class="meter" [class.over]="p.committedSpendEur > p.monthlyBudgetEur">
+        <div [style.width.%]="usedPercent()"></div>
+      </div>
+      <span class="small muted">
+        €{{ p.committedSpendEur | number: '1.2-2' }} committed of €{{ p.monthlyBudgetEur | number: '1.2-2' }}
+        (running resources plus approved requests not created yet)
+      </span>
+      <label class="inline">€ <input name="budget" type="number" min="1" step="1" [(ngModel)]="form.monthlyBudgetEur" (ngModelChange)="saved.set(false)" /> per month</label>
+    </div>
+
+    <div class="field">
+      <span>Auto-approve up to</span>
+      <label class="inline">€ <input name="autoMax" type="number" min="0" step="1" [(ngModel)]="form.autoApproveMaxEur" (ngModelChange)="saved.set(false)" /> per month, per request</label>
+      <span class="small muted">More expensive requests wait for someone to approve them.</span>
+    </div>
+
+    <label class="inline">
+      <input name="prod" type="checkbox" [(ngModel)]="form.requireApprovalForProd" (ngModelChange)="saved.set(false)" />
+      Production requests always need an approval
+    </label>
+
+    <div class="field">
+      <span>Allowed instance types</span>
+      <span class="small muted">None checked: any type in the catalog.</span>
+      <div class="checks">
+        @for (t of p.catalogInstanceTypes; track t) {
+          <label>
+            <input type="checkbox" [checked]="form.allowedInstanceTypes.includes(t)"
+                   (change)="toggle(form.allowedInstanceTypes, t, $any($event.target).checked)" />
+            <span class="mono">{{ t }}</span>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <span>Allowed regions</span>
+      <span class="small muted">None checked: any region.</span>
+      <div class="checks">
+        @for (r of p.catalogRegions; track r) {
+          <label>
+            <input type="checkbox" [checked]="form.allowedRegions.includes(r)"
+                   (change)="toggle(form.allowedRegions, r, $any($event.target).checked)" />
+            <span class="mono">{{ r }}</span>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit" [disabled]="busy()">Save policy</button>
+      @if (saved()) {
+        <span class="small ok">Saved. Applies to requests decided from now on.</span>
+      }
+    </div>
+  </form>
+}

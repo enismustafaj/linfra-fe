@@ -1,0 +1,62 @@
+<div class="toolbar">
+  <h1>Findings</h1>
+  <button (click)="toggle()">{{ openOnly() ? 'Show all' : 'Show open only' }}</button>
+  <button (click)="load()">Refresh</button>
+</div>
+<p class="muted small">The reconciler checks every minute. Nothing is fixed automatically: pick an action.</p>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+<div class="grid">
+  @for (f of findings(); track f.id) {
+    <div class="card">
+      <div class="card-head">
+        <strong>{{ f.type | titlecase }}</strong>
+        <app-state-badge [state]="f.status" />
+      </div>
+      <p class="small">{{ describe[f.type] }}</p>
+
+      @if (f.details.reason) {
+        <div class="small muted">{{ f.details.reason }}</div>
+      }
+      @if (f.details.differences) {
+        <table class="small">
+          @for (d of f.details.differences | keyvalue; track d.key) {
+            <tr><td>{{ d.key }}</td><td>expected {{ d.value.expected }}</td><td class="warn">actual {{ d.value.actual }}</td></tr>
+          }
+        </table>
+      }
+      @if (f.details.stuckForSeconds) {
+        <div class="small muted">{{ f.details.state | lowercase }} for {{ f.details.stuckForSeconds }}s with no worker</div>
+      }
+      @for (id of f.cloudIds; track id) {
+        <div class="small mono" [title]="id">container {{ id.slice(0, 12) }}</div>
+      }
+      <div class="small muted">first seen {{ f.firstSeenAt | date: 'short' }} · last seen {{ f.lastSeenAt | date: 'short' }}</div>
+
+      @if (f.resolution) {
+        <div class="small ok">{{ label[f.resolution] }}: {{ f.resolutionDetail }}</div>
+      }
+
+      @if (f.availableActions.length) {
+        <div class="actions">
+          @for (a of f.availableActions; track a) {
+            @if (a === 'KEEP') {
+              @for (id of f.cloudIds; track id) {
+                <button (click)="act(f, a, id)" [disabled]="busy()">Keep {{ id.slice(0, 12) }}</button>
+              }
+            } @else {
+              <button [class.danger]="a === 'DESTROY'" (click)="act(f, a)" [disabled]="busy()">{{ label[a] }}</button>
+            }
+          }
+        </div>
+      }
+    </div>
+  } @empty {
+    @if (findings()) {
+      <p class="muted">{{ openOnly() ? 'Nothing to look at. Everything matches.' : 'No findings yet.' }}</p>
+    }
+  }
+</div>
